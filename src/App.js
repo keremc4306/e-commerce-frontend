@@ -1,16 +1,16 @@
 import './App.css';
-import ListProduct from './components/ListProduct';
-import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ListProduct from './components/ListProduct';
+import Home from './components/Home/Home';
 function App() {
 
   return (
     <div className="container">
-      <Navbar title="Product List" />
-      <hr />
+
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ListProduct />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/stock-list" element={<ListProduct />} />
         </Routes>
       </BrowserRouter>
     </div>
