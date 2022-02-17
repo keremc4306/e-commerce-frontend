@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Row, Modal } from "react-bootstrap"
+import { Alert, Button, Form, Row, Modal } from "react-bootstrap"
 
 function Home() {
     const [user, setUser] = useState({
@@ -34,7 +34,7 @@ function Home() {
         setValidated(true);
     };
 
-    const login = () => {
+    const loginStockScreen = () => {
         setLoginModalOnShow(true);
     }
 
@@ -43,7 +43,7 @@ function Home() {
     }
 
     let navigate = useNavigate();
-    const stock = () => {
+    const goStockScreen = () => {
         if (user.email === "mkc@mail.com" && user.password === "mkc222") {
             let path = `/stock-list`;
             navigate(path);
@@ -57,9 +57,9 @@ function Home() {
         <div className="position-absolute bottom-50 bottom-left-20">
             <Modal show={loginModalOnShow} onHide={setLoginModalOnShow}>
                 {error && (
-                    <span>
+                    <Alert variant="danger">
                         {error}
-                    </span>)}
+                    </Alert>)}
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Modal.Header closeButton>
                         <Modal.Title>Login</Modal.Title>
@@ -96,14 +96,14 @@ function Home() {
                         <Button variant="danger" onClick={closeLogin}>
                             Cancel
                         </Button>
-                        <Button variant="success" type="submit" onClick={stock}>
+                        <Button variant="success" type="submit" onClick={goStockScreen}>
                             OK
                         </Button>
                     </Modal.Footer>
                 </Form>
             </Modal>
 
-            <button style={{ marginLeft: "130px" }} className="btn btn-info" onClick={() => login()}>Stock Screen</button>
+            <button style={{ marginLeft: "130px" }} className="btn btn-info" onClick={() => loginStockScreen()}>Stock Screen</button>
             <button style={{ marginLeft: "360px" }} className="btn btn-success">Sales Screen</button>
         </div>
 
