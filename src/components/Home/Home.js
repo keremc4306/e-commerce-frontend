@@ -42,14 +42,20 @@ function Home() {
         setLoginModalOnShow(false);
     }
 
-    let navigate = useNavigate();
+    let navigateStList = useNavigate();
     const goStockScreen = () => {
         if (user.email === "mkc@mail.com" && user.password === "mkc222") {
             let path = `/stock-list`;
-            navigate(path);
+            navigateStList(path);
         } else {
             setError("Email or password incorrect");
         }
+    }
+
+    let navigateSales = useNavigate();
+    const enterSalesScreen = () => {
+        let path = `/sales`;
+        navigateSales(path);
     }
 
     return (
@@ -104,7 +110,7 @@ function Home() {
             </Modal>
 
             <button style={{ marginLeft: "130px" }} className="btn btn-info" onClick={() => loginStockScreen()}>Stock Screen</button>
-            <button style={{ marginLeft: "360px" }} className="btn btn-success">Sales Screen</button>
+            <button style={{ marginLeft: "360px" }} className="btn btn-success" onClick={() => enterSalesScreen()}>Sales Screen</button>
         </div>
 
     )

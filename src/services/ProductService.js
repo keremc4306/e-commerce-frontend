@@ -8,6 +8,10 @@ class ProductService {
         return axios.get(PRODUCT_API_BASE_URL);
     }
 
+    getBrands() {
+        return axios.get(`${PRODUCT_API_BASE_URL}/brands`);
+    }
+
     createProduct(product) {
         return axios.post(PRODUCT_API_BASE_URL + '/add', product);
     }
