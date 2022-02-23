@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ProductService from '../../../services/ProductService';
+import FilterData from '../FilterPanel/FilterData';
 
 function Products() {
     const [products, setProducts] = useState([]);
 
     const [masterChecked, setMasterChecked] = useState(false);
     const [selectedProducts, setSelectedProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const listProducts = filteredProducts.length?filteredProducts:products;
 
     useEffect(() => {
       getAllProducts();
@@ -43,8 +46,15 @@ function Products() {
       return;
     }
 
+
+
+    const handleBrandChange = (brand) => {
+      setFilteredProducts(products.filter((product) => product.brandName === brand))
+    }
+
     return (
       <div>
+        <FilterData onBrandChange={handleBrandChange}/>
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
@@ -65,7 +75,7 @@ function Products() {
           </thead>
           <tbody>
             {
-              products.map(
+              listProducts.map(
                 product =>
                   <tr key={product.itemNo}>
                     <td>

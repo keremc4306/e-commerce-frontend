@@ -1,5 +1,4 @@
 import React from 'react'
-import FilterData from '../../components/Sales/FilterPanel/FilterData';
 import Products from '../../components/Sales/List/Products';
 import '../../components/Sales/SalesScreen.css';
 
@@ -36,10 +35,6 @@ function SalesScreen() {
                     </nav>
                 </div>
             </div>
-        
-        <div className="home_panel-wrap col-md-3 px-md-3">
-          <FilterData />
-        </div>
         
         <div className="home_list-wrap col-md-9">
           <Products />
