@@ -16,31 +16,36 @@ function FilterData() {
   }, []);
 
   const getAllProducts = () => {
-    ProductService.getProducts().then(response => setProducts(response.data));
-  }
+    ProductService.getProducts().then((response) => setProducts(response.data));
+  };
 
   const getAllBrands = () => {
-    ProductService.getBrands().then(response => setBrands(response.data));
-  }
+    ProductService.getBrands().then((response) => setBrands(response.data));
+  };
 
   let fb = [...products];
   const onBrandChange = (e) => {
-    const { name } = e.currentTarget;
+    let name = e.target.getAttribute("brand");
     if (true) {
-      fb = fb.filter(itemNo => itemNo.brandName === e.target.value)
-    } 
+      fb = fb.filter((itemNo) => itemNo.brandName === name);
+    }
     brandFilter.includes(name)
       ? setBrandFilter(brandFilter.filter((products) => products !== name))
       : setBrandFilter([...brandFilter, name]);
-    console.log(fb)
-  }
+    console.log(fb);
+  };
 
   return (
     <div>
       <ul className="list-group">
         {brands.map((value, index) =>
           <li className="list-group-item" key={index}>
-            <input className="form-check-input me-1" type="checkbox" aria-label="..." onChange={onBrandChange} /> {value}
+            <input className="form-check-input me-1" 
+            type="checkbox" 
+            aria-label="..." 
+            brand={value}
+            id={`brandcheck-${value}`}
+            onChange={onBrandChange}/> {value}
           </li>)}
       </ul>
     </div>
