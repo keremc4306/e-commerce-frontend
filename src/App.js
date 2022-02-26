@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <main className="container">
           <div className="table">
             <BrowserRouter>
               <Routes>

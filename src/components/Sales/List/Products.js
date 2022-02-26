@@ -3,58 +3,62 @@ import ProductService from '../../../services/ProductService';
 import FilterData from '../FilterPanel/FilterData';
 
 function Products() {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-    const [masterChecked, setMasterChecked] = useState(false);
-    const [selectedProducts, setSelectedProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const listProducts = filteredProducts.length?filteredProducts:products;
+  const [masterChecked, setMasterChecked] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [filteredBrands, setFilteredBrands] = useState([]);
+  const listBrands = filteredBrands.length ? filteredBrands : products;
 
-    useEffect(() => {
-      getAllProducts();
-    }, []);
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
-    const getAllProducts = () => {
-      ProductService.getProducts().then(response => setProducts(response.data));
-    }
+  const getAllProducts = () => {
+    ProductService.getProducts().then(response => setProducts(response.data));
+  }
 
-    const onMasterCheck = (e) => {
+  const onMasterCheck = (e) => {
 
-      let tempProducts = products;
-      tempProducts.map((product) => (product.selected = e.target.checked));
+    let tempProducts = products;
+    tempProducts.map((product) => (product.selected = e.target.checked));
 
-      setMasterChecked(e.target.checked);
-      setProducts(tempProducts);
-      setSelectedProducts(products.filter((e) => e.selected));
-    }
+    setMasterChecked(e.target.checked);
+    setProducts(tempProducts);
+    setSelectedProducts(products.filter((e) => e.selected));
+  }
 
-    const onItemCheck = (e) => {
-      let tempProducts = products;
-      tempProducts.map((product) => {
-        if (product.itemNo === parseInt(e.target.getAttribute('productitemno'))) {
-          product.selected = e.target.checked;
-        }
-        return product;
-      });
+  const onItemCheck = (e) => {
+    let tempProducts = products;
+    tempProducts.map((product) => {
+      if (product.itemNo === parseInt(e.target.getAttribute('productitemno'))) {
+        product.selected = e.target.checked;
+      }
+      return product;
+    });
 
-      const totalItems = products.length;
-      const totalCheckedItems = tempProducts.filter((e) => e.selected).length;
+    const totalItems = products.length;
+    const totalCheckedItems = tempProducts.filter((e) => e.selected).length;
 
-      setMasterChecked(totalItems === totalCheckedItems);
-      setProducts(products);
-      setSelectedProducts(products.filter((e) => e.selected));
-      return;
-    }
+    setMasterChecked(totalItems === totalCheckedItems);
+    setProducts(products);
+    setSelectedProducts(products.filter((e) => e.selected));
+    return;
+  }
 
 
 
-    const handleBrandChange = (brand) => {
-      setFilteredProducts(products.filter((product) => product.brandName === brand))
-    }
+  const handleBrandChange = (selectedBrands) => {
+    console.info([].includes(2));
+    setFilteredBrands(products.filter(product => selectedBrands.map(b => b.data).includes(product.brandName)))
+  }
 
-    return (
-      <div>
-        <FilterData onBrandChange={handleBrandChange}/>
+  return (
+    <div className="row">
+      <div className="col-md-3">
+        <FilterData onBrandChange={(brand) => handleBrandChange(brand)} />
+      </div>
+      <div className='col-md-9'>
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
@@ -75,7 +79,7 @@ function Products() {
           </thead>
           <tbody>
             {
-              listProducts.map(
+              listBrands.map(
                 product =>
                   <tr key={product.itemNo}>
                     <td>
@@ -101,7 +105,8 @@ function Products() {
           </tbody>
         </table>
       </div>
-    )
+    </div>
+  )
 }
 
 export default Products;
