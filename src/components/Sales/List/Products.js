@@ -4,18 +4,20 @@ import FilterData from '../FilterPanel/FilterData';
 
 function Products() {
   const [products, setProducts] = useState([]);
-
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [masterChecked, setMasterChecked] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [filteredBrands, setFilteredBrands] = useState([]);
-  const listBrands = filteredBrands.length ? filteredBrands : products;
 
   useEffect(() => {
     getAllProducts();
   }, []);
 
   const getAllProducts = () => {
-    ProductService.getProducts().then(response => setProducts(response.data));
+    ProductService.getProducts().then(response => {
+      setProducts(response.data);
+      setFilteredProducts(response.data);
+    });
+    
   }
 
   const onMasterCheck = (e) => {
@@ -48,15 +50,21 @@ function Products() {
 
 
 
-  const handleBrandChange = (selectedBrands) => {
-    console.info([].includes(2));
-    setFilteredBrands(products.filter(product => selectedBrands.map(b => b.data).includes(product.brandName)))
+  const handleFilterChange = (selectedBrands, selectedProcessors) => {  
+    const filtered = (selectedBrands.length === 0 && selectedProcessors.length === 0) ? products :  products
+    .filter(product => {
+      return (selectedBrands.length === 0 || selectedBrands.map(b => b.data).includes(product.brandName)) &&
+            (selectedProcessors.length === 0 || selectedProcessors.map(b => b.data).includes(product.proName))
+    });
+    
+    setFilteredProducts(filtered)
+
   }
 
   return (
     <div className="row">
       <div className="col-md-3">
-        <FilterData onBrandChange={(brand) => handleBrandChange(brand)} />
+        <FilterData onFilterChange={(brands, processors) => handleFilterChange(brands,processors)} />
       </div>
       <div className='col-md-9'>
         <table className="table table-striped table-bordered">
@@ -79,7 +87,7 @@ function Products() {
           </thead>
           <tbody>
             {
-              listBrands.map(
+              filteredProducts.map(
                 product =>
                   <tr key={product.itemNo}>
                     <td>

@@ -12,6 +12,18 @@ class ProductService {
         return axios.get(`${PRODUCT_API_BASE_URL}/brands`);
     }
 
+    getProcessors() {
+        return axios.get(`${PRODUCT_API_BASE_URL}/processors`);
+    }
+
+    getRams() {
+        return axios.get(`${PRODUCT_API_BASE_URL}/rams`);
+    }
+
+    getSsds() {
+        return axios.get(`${PRODUCT_API_BASE_URL}/ssds`);
+    }
+
     createProduct(product) {
         return axios.post(PRODUCT_API_BASE_URL + '/add', product);
     }
