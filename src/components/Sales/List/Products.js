@@ -50,11 +50,13 @@ function Products() {
 
 
 
-  const handleFilterChange = (selectedBrands, selectedProcessors) => {  
+  const handleFilterChange = (selectedBrands, selectedProcessors, selectedRams, selectedSsds) => {  
     const filtered = (selectedBrands.length === 0 && selectedProcessors.length === 0) ? products :  products
     .filter(product => {
       return (selectedBrands.length === 0 || selectedBrands.map(b => b.data).includes(product.brandName)) &&
-            (selectedProcessors.length === 0 || selectedProcessors.map(b => b.data).includes(product.proName))
+            (selectedProcessors.length === 0 || selectedProcessors.map(b => b.data).includes(product.proName)) &&
+            (selectedRams.length === 0 || selectedRams.map(b => b.data).includes(product.ram)) &&
+            (selectedSsds.length === 0 || selectedSsds.map(b => b.data).includes(product.ssd))
     });
     
     setFilteredProducts(filtered)
@@ -64,7 +66,7 @@ function Products() {
   return (
     <div className="row">
       <div className="col-md-3">
-        <FilterData onFilterChange={(brands, processors) => handleFilterChange(brands,processors)} />
+        <FilterData onFilterChange={(brands, processors, rams, ssds) => handleFilterChange(brands,processors, rams, ssds)} />
       </div>
       <div className='col-md-9'>
         <table className="table table-striped table-bordered">

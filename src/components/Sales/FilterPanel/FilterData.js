@@ -50,25 +50,39 @@ function FilterData({ onFilterChange }) {
     let selectedItemIndex;
     let newStateSelected;
 
-    switch(type) {
+    switch (type) {
       case 'brand':
         selectedItemIndex = selectedBrands.map(b => b.data).indexOf(value);
         newStateSelected = [...selectedBrands];
         newStateSelected[selectedItemIndex].selected = selected;
         setSelectedBrands(newStateSelected);
         break;
-        case 'processor':
-          selectedItemIndex = selectedProcs.map(b => b.data).indexOf(value);
-          newStateSelected = [...selectedProcs];
-          newStateSelected[selectedItemIndex].selected = selected;
-          setSelectedProcs(newStateSelected);
-          break;  
+      case 'processor':
+        selectedItemIndex = selectedProcs.map(b => b.data).indexOf(value);
+        newStateSelected = [...selectedProcs];
+        newStateSelected[selectedItemIndex].selected = selected;
+        setSelectedProcs(newStateSelected);
+        break;
+      case 'ram':
+        selectedItemIndex = selectedRams.map(b => b.data).indexOf(value);
+        newStateSelected = [...selectedRams];
+        newStateSelected[selectedItemIndex].selected = selected;
+        setSelectedRams(newStateSelected);
+        break;
+      case 'ssd':
+        selectedItemIndex = selectedSsds.map(b => b.data).indexOf(value);
+        newStateSelected = [...selectedSsds];
+        newStateSelected[selectedItemIndex].selected = selected;
+        setSelectedSsds(newStateSelected);
+        break;
       default:
-        break;  
+        break;
     }
     onFilterChange(
       selectedBrands.filter(b => b.selected === true),
-      selectedProcs.filter(b => b.selected === true)
+      selectedProcs.filter(b => b.selected === true),
+      selectedRams.filter(b => b.selected === true),
+      selectedSsds.filter(b => b.selected === true)
     );
   }
 
@@ -94,7 +108,7 @@ function FilterData({ onFilterChange }) {
       <div className="border-bottom border-5 border-success mb-2 p-2 bg-dark text-white">
         <b>Processor</b>
       </div>
-      { <ul className="d-flex list-group">
+      {<ul className="d-flex list-group">
         {processors.map((value, index) =>
           <li className="list-group-item" key={index}>
             <input className="form-check-input me-1"
@@ -111,7 +125,7 @@ function FilterData({ onFilterChange }) {
       <div className="border-bottom border-5 border-success mb-2 p-2 bg-dark text-white">
         <b>RAM (GB)</b>
       </div>
-      { <ul className="d-flex list-group">
+      {<ul className="d-flex list-group">
         {rams.map((value, index) =>
           <li className="list-group-item" key={index}>
             <input className="form-check-input me-1"
@@ -128,7 +142,7 @@ function FilterData({ onFilterChange }) {
       <div className="border-bottom border-5 border-success mb-2 p-2 bg-dark text-white">
         <b>SSD (GB)</b>
       </div>
-      { <ul className="d-flex list-group">
+      {<ul className="d-flex list-group">
         {ssds.map((value, index) =>
           <li className="list-group-item" key={index}>
             <input className="form-check-input me-1"
