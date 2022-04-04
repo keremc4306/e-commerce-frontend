@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
 import ProductService from '../../../services/ProductService';
 import FilterData from '../FilterPanel/FilterData';
+import { useBasketContext } from "../../../context/basket/BasketContext";
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [masterChecked, setMasterChecked] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const { basketState, dispatchBasketStateAction } = useBasketContext();
+
+  console.log(basketState, "BASKET STATE")
 
   useEffect(() => {
     getAllProducts();
@@ -17,8 +20,9 @@ function Products() {
     ProductService.getProducts().then(response => {
       setProducts(response.data);
       setFilteredProducts(response.data);
+
     });
-    
+
   }
 
   const onMasterCheck = (e) => {
@@ -36,6 +40,14 @@ function Products() {
     tempProducts.map((product) => {
       if (product.itemNo === parseInt(e.target.getAttribute('productitemno'))) {
         product.selected = e.target.checked;
+
+        if (e.target.checked) {
+          dispatchBasketStateAction({ type: "ADD_ITEM", payload: product })
+        }
+        else {
+          dispatchBasketStateAction({ type: "REMOVE_ITEM", payload: product.itemNo })
+        }
+
       }
       return product;
     });
@@ -51,33 +63,31 @@ function Products() {
 
 
 
-  const handleFilterChange = (selectedBrands, selectedProcessors, selectedRams, selectedSsds) => {  
-    const filtered = (selectedBrands.length === 0 && selectedProcessors.length === 0) ? products :  products
-    .filter(product => {
-      return (selectedBrands.length === 0 || selectedBrands.map(b => b.data).includes(product.brandName)) &&
-            (selectedProcessors.length === 0 || selectedProcessors.map(b => b.data).includes(product.proName)) &&
-            (selectedRams.length === 0 || selectedRams.map(b => b.data).includes(product.ram)) &&
-            (selectedSsds.length === 0 || selectedSsds.map(b => b.data).includes(product.ssd))
-    });
-    
+  const handleFilterChange = (selectedBrands, selectedProcessors, selectedRams, selectedSsds) => {
+    const filtered = (selectedBrands.length === 0 && selectedProcessors.length === 0) ? products : products
+      .filter(product => {
+        return (selectedBrands.length === 0 || selectedBrands.map(b => b.data).includes(product.brandName)) &&
+          (selectedProcessors.length === 0 || selectedProcessors.map(b => b.data).includes(product.proName)) &&
+          (selectedRams.length === 0 || selectedRams.map(b => b.data).includes(product.ram)) &&
+          (selectedSsds.length === 0 || selectedSsds.map(b => b.data).includes(product.ssd))
+      });
+
     setFilteredProducts(filtered)
 
   }
 
-  let navigateBasket = useNavigate();
-    const basket = () => {
-        let path = `/basket`;
-        navigateBasket(path);
-    }
+  function addSelectedProductToBasket() {
+    dispatchBasketStateAction({ type: "ADD_ITEM", payload: selectedProducts })
+  }
 
   return (
     <div className="row">
       <div className="col-md-3">
-        <FilterData onFilterChange={(brands, processors, rams, ssds) => handleFilterChange(brands,processors, rams, ssds)} />
+        <FilterData onFilterChange={(brands, processors, rams, ssds) => handleFilterChange(brands, processors, rams, ssds)} />
       </div>
       <div className='col-md-9'>
-      <button style={{ marginLeft: "90px" }} className="btn btn-info" onClick={() => basket()}
-                disabled={selectedProducts.length < 1 ? true : false}>Add to basket</button>
+        {/* <button style={{ marginLeft: "90px" }} className="btn btn-info" onClick={()=>addSelectedProductToBasket()}
+          disabled={selectedProducts.length === 0}>Add to basket</button> */}
         <hr />
         <table className="table table-striped table-bordered">
           <thead>
@@ -126,7 +136,7 @@ function Products() {
         </table>
       </div>
 
-     
+
     </div>
   )
 }

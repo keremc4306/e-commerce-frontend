@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { useBasketContext } from "../context/basket/BasketContext";
+
 function Navbar() {
+    const { basketState: { items } } = useBasketContext();
     return (
         <div>
             <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -9,12 +12,14 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="navbar-nav">
-                    
+                    {`${items.length} item(s)`}
+
+
                 </div>
             </header>
             <br></br>
 
-            
+
         </div>
     )
 }
