@@ -78,7 +78,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ![Stock screen login page](https://user-images.githubusercontent.com/79416722/161769420-6ed07686-d295-4957-87b1-7a92e3ae71d7.png)
 
-**Stock Screen**
+**Sales Screen**
 
 **:tada::tada: Add Product screen :tada::tada:**
 
