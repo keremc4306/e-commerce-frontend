@@ -82,17 +82,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 **:tada::tada: Add Product screen :tada::tada:**
 
-![Add product screen](https://user-images.githubusercontent.com/79416722/161769589-d4b6e8e3-7142-4dee-acf7-69fb0be4fd97.png)
+![Add product screen](https://user-images.githubusercontent.com/79416722/161770930-1820d758-8af5-4fd9-9cb7-4c2e3f648606.png)
+
 
 **:tada::tada: Update Product screen :tada::tada:**
 
+![Update product screen](https://user-images.githubusercontent.com/79416722/161771009-e6244d59-c512-486d-a1e1-13f0deb22308.png)
+
+
 When it was deleted product, the number of products change.
+
 
 **:tada::tada: Stock Screen :tada::tada:**
 
 ![Sales screen](https://user-images.githubusercontent.com/79416722/161770095-d84217ec-543e-4326-a6f3-255641c7394d.png)
 
 ![Sales screen 2](https://user-images.githubusercontent.com/79416722/161770216-17045f5b-dc1a-46a1-b4c3-e000d1bd6e97.png)
+
 
 **:tada::tada: Filtering data and basket :tada::tada:**
 
