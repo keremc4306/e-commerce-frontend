@@ -78,7 +78,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ![Stock screen login page](https://user-images.githubusercontent.com/79416722/161769420-6ed07686-d295-4957-87b1-7a92e3ae71d7.png)
 
-**Sales Screen**
+**Stock Screen**
 
 **:tada::tada: Add Product screen :tada::tada:**
 
@@ -93,7 +93,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 When it was deleted product, the number of products change.
 
 
-**:tada::tada: Stock Screen :tada::tada:**
+**:tada::tada: Sales Screen :tada::tada:**
 
 ![Sales screen](https://user-images.githubusercontent.com/79416722/161770095-d84217ec-543e-4326-a6f3-255641c7394d.png)
 
