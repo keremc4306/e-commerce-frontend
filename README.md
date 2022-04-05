@@ -68,3 +68,32 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+**:tada::tada: Home page :tada::tada:**
+
+![Home page](https://user-images.githubusercontent.com/79416722/161769204-affd188b-b91a-4f9b-91e9-c02f792af57d.png)
+
+**:tada::tada: Login page :tada::tada:**
+
+![Stock screen login page](https://user-images.githubusercontent.com/79416722/161769420-6ed07686-d295-4957-87b1-7a92e3ae71d7.png)
+
+**Stock Screen**
+
+**:tada::tada: Add Product screen :tada::tada:**
+
+![Add product screen](https://user-images.githubusercontent.com/79416722/161769589-d4b6e8e3-7142-4dee-acf7-69fb0be4fd97.png)
+
+**:tada::tada: Update Product screen :tada::tada:**
+
+When it was deleted product, the number of products change.
+
+**:tada::tada: Stock Screen :tada::tada:**
+
+![Sales screen](https://user-images.githubusercontent.com/79416722/161770095-d84217ec-543e-4326-a6f3-255641c7394d.png)
+
+![Sales screen 2](https://user-images.githubusercontent.com/79416722/161770216-17045f5b-dc1a-46a1-b4c3-e000d1bd6e97.png)
+
+**:tada::tada: Filtering data and basket :tada::tada:**
+
+![Sales screen (filtering)](https://user-images.githubusercontent.com/79416722/161770664-b8a2b972-c765-48e1-803a-03ed4572d2c4.png)
