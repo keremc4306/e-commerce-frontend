@@ -76,8 +76,8 @@ function Products() {
 
   }
 
-  function addSelectedProductToBasket() {
-    dispatchBasketStateAction({ type: "ADD_ITEM", payload: selectedProducts })
+  function addSelectedProductToBasket(product) {
+    dispatchBasketStateAction({ type: "ADD_ITEM", payload: product })
   }
 
   return (
@@ -92,12 +92,12 @@ function Products() {
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
-              <th><input
+              {/* <th><input
                 type="checkbox"
                 className="form-check-input"
                 checked={masterChecked}
                 id="mastercheck"
-                onChange={() => onMasterCheck}></input></th>
+                onChange={() => onMasterCheck}></input></th> */}
               <th>Item No</th>
               <th>Brand</th>
               <th>Processor</th>
@@ -105,6 +105,7 @@ function Products() {
               <th>SSD (GB)</th>
               <th>Price (TL)</th>
               <th>Number of stock</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -112,7 +113,7 @@ function Products() {
               filteredProducts.map(
                 product =>
                   <tr key={product.itemNo}>
-                    <td>
+                    {/* <td>
                       <input
                         type="checkbox"
                         className="form-check-input"
@@ -121,7 +122,7 @@ function Products() {
                         name="checkItem"
                         onChange={onItemCheck}
                       />
-                    </td>
+                    </td> */}
                     <td> {product.itemNo}</td>
                     <td> {product.brandName} </td>
                     <td> {product.proName}</td>
@@ -129,6 +130,7 @@ function Products() {
                     <td> {product.ssd}</td>
                     <td> {product.price}</td>
                     <td> {product.numOfStock}</td>
+                    <td><button className='btn btn-success' onClick={() => addSelectedProductToBasket(product)}>Add To Basket</button></td>
                   </tr>
               )
             }

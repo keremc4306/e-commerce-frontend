@@ -11,7 +11,21 @@ function basketStateReducer(state = initialBasketState, action) {
 
     switch (action.type) {
         case "ADD_ITEM":
-            newState = { ...state, items: [...state.items, action.payload] }
+            const itemIndex = state.items.map(basketItem => basketItem.item.itemNo)
+            .indexOf(action.payload.itemNo);
+
+            if(itemIndex > -1) {
+                newState = {
+                    ...state,
+                    items: [
+                        ...state.items.slice(0, itemIndex),
+                        {...state.items[itemIndex], count: state.items[itemIndex].count + 1},
+                        ...state.items.slice(itemIndex + 1)
+                    ]
+                }
+                return newState;
+            }
+            return {...state, items: [...state.items, {item: action.payload, count: 1}]}
             break;
 
         case "REMOVE_ITEM":
@@ -21,6 +35,8 @@ function basketStateReducer(state = initialBasketState, action) {
         case "CLEAR_BASKET":
             newState = initialBasketState;
             break;
+        default:
+            break;    
     }
 
     return newState;
