@@ -29,7 +29,18 @@ function basketStateReducer(state = initialBasketState, action) {
             break;
 
         case "REMOVE_ITEM":
-            newState = { ...state, items: state.items.filter((item) => item.itemNo !== action.payload) }
+            if (itemIndex > -1) {
+                newState = { 
+                    ...state, 
+                    items: [
+                        ...state.items.slice(0, itemIndex-1),
+                        {...state.items[itemIndex], count: state.items[itemIndex-1].count - 1},
+                        ...state.items.slice(itemIndex - 1)
+                    ]
+                }
+                return newState;
+            }
+            return {...state, items: [...state.items, {item: action.payload, count: 1}]}
             break;
 
         case "CLEAR_BASKET":
