@@ -33,9 +33,7 @@ function basketStateReducer(state = initialBasketState, action) {
                 newState = { 
                     ...state, 
                     items: [
-                        ...state.items.slice(0, itemIndex-1),
-                        {...state.items[itemIndex], count: state.items[itemIndex-1].count - 1},
-                        ...state.items.slice(itemIndex - 1)
+                        state.items.filter(basketItem => basketItem.item.itemNo != itemIndex)
                     ]
                 }
                 return newState;
