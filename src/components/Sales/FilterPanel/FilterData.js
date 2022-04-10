@@ -105,7 +105,7 @@ function FilterData({ onFilterChange }) {
 
       <br />
 
-      <div className="border-bottom border-5 border-success mb-2 p-2 bg-dark text-white">
+      <div className="border-bottom border-5 border-warning mb-2 p-2 bg-dark text-white">
         <b>Processor</b>
       </div>
       {<ul className="d-flex list-group">
@@ -122,7 +122,7 @@ function FilterData({ onFilterChange }) {
 
       <br />
 
-      <div className="border-bottom border-5 border-success mb-2 p-2 bg-dark text-white">
+      <div className="border-bottom border-5 border-info mb-2 p-2 bg-dark text-white">
         <b>RAM (GB)</b>
       </div>
       {<ul className="d-flex list-group">
@@ -139,7 +139,7 @@ function FilterData({ onFilterChange }) {
 
       <br />
 
-      <div className="border-bottom border-5 border-success mb-2 p-2 bg-dark text-white">
+      <div className="border-bottom border-5 border-danger mb-2 p-2 bg-dark text-white">
         <b>SSD (GB)</b>
       </div>
       {<ul className="d-flex list-group">

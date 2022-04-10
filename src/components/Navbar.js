@@ -23,8 +23,8 @@ function Navbar() {
                         {items.length > 0 ? items.map(basketItem => 
                             <Dropdown.Item key={basketItem.item.itemNo}>
                                 {basketItem.item.itemNo} - {basketItem.item.brandName +' '+ basketItem.item.proName} 
-                                <Badge bg={basketItem.count === 1 ? "danger" : 'success'} style={{marginLeft: 10}}>{basketItem.count}</Badge>
-                                <Badge bg={basketItem.count === 1 ? 'warning' : "info"} style={{marginLeft: 10}}>X</Badge>
+                                <Badge bg={basketItem.count === 1 ? "danger" : "success"} style={{marginLeft: 10}}>{basketItem.count}</Badge>
+                                {/* <Badge bg={basketItem.count === 1 ? 'warning' : "info"} style={{marginLeft: 10}}>X</Badge */}
                             </Dropdown.Item>
                         )
                         : <Dropdown.Item>Basket is empty</Dropdown.Item>}

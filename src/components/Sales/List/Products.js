@@ -6,11 +6,11 @@ import { useBasketContext } from "../../../context/basket/BasketContext";
 function Products() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [masterChecked, setMasterChecked] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  /* const [masterChecked, setMasterChecked] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]); */
   const { basketState, dispatchBasketStateAction } = useBasketContext();
 
-  console.log(basketState, "BASKET STATE")
+  /* console.log(basketState, "BASKET STATE") */
 
   useEffect(() => {
     getAllProducts();
@@ -25,6 +25,7 @@ function Products() {
 
   }
 
+  /*
   const onMasterCheck = (e) => {
 
     let tempProducts = products;
@@ -34,7 +35,9 @@ function Products() {
     setProducts(tempProducts);
     setSelectedProducts(products.filter((e) => e.selected));
   }
+  */
 
+  /*
   const onItemCheck = (e) => {
     let tempProducts = products;
     tempProducts.map((product) => {
@@ -60,7 +63,7 @@ function Products() {
     setSelectedProducts(products.filter((e) => e.selected));
     return;
   }
-
+  */
 
 
   const handleFilterChange = (selectedBrands, selectedProcessors, selectedRams, selectedSsds) => {
@@ -80,15 +83,16 @@ function Products() {
     dispatchBasketStateAction({ type: "ADD_ITEM", payload: product })
   }
 
+  function removeSelectedProductFromBasket(product) {
+    dispatchBasketStateAction({ type: "REMOVE_ITEM", payload: product})
+  }
+
   return (
     <div className="row">
       <div className="col-md-3">
         <FilterData onFilterChange={(brands, processors, rams, ssds) => handleFilterChange(brands, processors, rams, ssds)} />
       </div>
       <div className='col-md-9'>
-        {/* <button style={{ marginLeft: "90px" }} className="btn btn-info" onClick={()=>addSelectedProductToBasket()}
-          disabled={selectedProducts.length === 0}>Add to basket</button> */}
-        <hr />
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
@@ -130,7 +134,9 @@ function Products() {
                     <td> {product.ssd}</td>
                     <td> {product.price}</td>
                     <td> {product.numOfStock}</td>
-                    <td><button className='btn btn-success' onClick={() => addSelectedProductToBasket(product)}>Add To Basket</button></td>
+                    <td><button className="btn btn-success" onClick={() => addSelectedProductToBasket(product)}>Add</button>
+                    <button style={{ marginLeft: "10px" }} className="btn btn-danger" onClick={() => removeSelectedProductFromBasket(product)}>Remove</button>
+                    </td>
                   </tr>
               )
             }
