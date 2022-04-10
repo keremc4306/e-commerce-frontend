@@ -32,9 +32,7 @@ function basketStateReducer(state = initialBasketState, action) {
             if (itemIndex > -1) {
                 newState = { 
                     ...state, 
-                    items: [
-                        state.items.filter(basketItem => basketItem.item.itemNo != itemIndex)
-                    ]
+                    items: state.items.filter(basketItem => basketItem.item.itemNo != itemIndex)
                 }
                 return newState;
             }
