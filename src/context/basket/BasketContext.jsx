@@ -8,11 +8,11 @@ const initialBasketState = {
 
 function basketStateReducer(state = initialBasketState, action) {
     let newState = state;
-
+    const itemIndex = state.items.map(basketItem => basketItem.item.itemNo)
+            .indexOf(action.payload.itemNo);
     switch (action.type) {
         case "ADD_ITEM":
-            const itemIndex = state.items.map(basketItem => basketItem.item.itemNo)
-            .indexOf(action.payload.itemNo);
+            
 
             if(itemIndex > -1) {
                 newState = {
