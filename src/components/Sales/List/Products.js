@@ -134,8 +134,9 @@ function Products() {
                     <td> {product.ssd}</td>
                     <td> {product.price}</td>
                     <td> {product.numOfStock}</td>
-                    <td><button className="btn btn-success" onClick={() => addSelectedProductToBasket(product)}>Add</button>
-                    <button style={{ marginLeft: "10px" }} className="btn btn-danger" onClick={() => removeSelectedProductFromBasket(product)}>Remove</button>
+                    <td><button className="btn btn-success" onClick={() => addSelectedProductToBasket(product)}>+</button>
+                    <button style={{ marginLeft: "10px" }} className="btn btn-danger" 
+                          onClick={() => removeSelectedProductFromBasket(product)}>-</button>
                     </td>
                   </tr>
               )
