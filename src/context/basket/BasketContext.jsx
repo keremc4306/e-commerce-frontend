@@ -1,7 +1,8 @@
 import { createContext, useContext } from "react";
 
 const initialBasketState = {
-    items: []
+    items: [],
+    navbarItemsVisible: false,
 };
 
 function basketStateReducer(state = initialBasketState, action) {
@@ -50,6 +51,18 @@ function basketStateReducer(state = initialBasketState, action) {
 
         case "CLEAR_BASKET":
             newState = initialBasketState;
+            break;
+        case "SHOW_NAVBAR_ITEMS":
+            return {
+                ...state,
+                navbarItemsVisible: action.payload,
+            };
+            break;
+        case "HIDE_NAVBAR_ITEMS":
+            return {
+                ...state,
+                navbarItemsVisible: action.payload,
+            };
             break;
         default:
             break;
