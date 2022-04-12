@@ -4,7 +4,7 @@ import { useBasketContext } from "../context/basket/BasketContext";
 import { Badge, Dropdown } from "react-bootstrap";
 
 function Navbar() {
-    const { basketState: { items } } = useBasketContext();
+    const { basketState: { items, navbarItemsVisible  } } = useBasketContext();
     return (
         <div>
             <header className="navbar navbar-dark sticky-top bg-light flex-md-nowrap p-0 shadow">
@@ -13,7 +13,7 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-
+        {  navbarItemsVisible == true ?
                 <Dropdown style={{marginRight:30}}>
                     <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                         {`${items.length} item(s)`}
@@ -38,6 +38,9 @@ function Navbar() {
                         
                     </Dropdown.Menu>
                 </Dropdown>
+                     :
+                <></>
+           }
             </header>
             <br></br>
 

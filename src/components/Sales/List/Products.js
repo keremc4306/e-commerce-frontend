@@ -12,7 +12,12 @@ function Products() {
 
   /* console.log(basketState, "BASKET STATE") */
 
+  const setNavbarItemsVisible = () => {
+    dispatchBasketStateAction({type: "SHOW_NAVBAR_ITEMS", payload: true}) 
+  }
+  
   useEffect(() => {
+    setNavbarItemsVisible();
     getAllProducts();
   }, []);
 
